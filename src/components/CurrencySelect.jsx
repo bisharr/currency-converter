@@ -161,15 +161,24 @@ const currencyCodes = [
   "ZMW",
   "ZWL",
 ];
-import ComferterForm from "./components/ComferterForm";
-
-function App() {
+function CurrencySelect({ selectedCurrency, handleCurrency }) {
+  const countryCode = selectedCurrency.substring(0, 2);
   return (
-    <div className="currency-conveter">
-      <h2 className="converter-title">currency Converter</h2>
-      <ComferterForm currencyArr={currencyCodes} />
+    <div className="currency-select">
+      <img src={`https://flagsapi.com/${countryCode}/flat/64.png`} alt="flag" />
+      <select
+        className="currency-dropdown"
+        value={selectedCurrency}
+        onChange={handleCurrency}
+      >
+        {currencyCodes.map((val, i) => (
+          <option value={val} key={i}>
+            {val}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
 
-export default App;
+export default CurrencySelect;
